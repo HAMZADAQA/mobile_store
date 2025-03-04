@@ -1,14 +1,13 @@
-// jest.config.ts
 import { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
   preset: "ts-jest",
-  testEnvironment: "jest-environment-jsdom", // Ensure the correct test environment
+  testEnvironment: "jest-environment-jsdom",
   transform: {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        tsconfig: "<rootDir>/tsconfig.app.json", // Point to the correct tsconfig file
+        tsconfig: "<rootDir>/tsconfig.app.json",
         diagnostics: {
           ignoreCodes: [1343],
         },
@@ -28,13 +27,11 @@ const config: Config.InitialOptions = {
           ],
         },
       },
-    ], // Process TypeScript files with ts-jest
+    ],
   },
-  setupFilesAfterEnv: [
-    "<rootDir>/jest.setup.ts", // Point to your setup file
-  ],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1", // Handle path aliases (if you use them)
+    "^@/(.*)$": "<rootDir>/src/$1",
     "\\.(css|less|scss)$": "identity-obj-proxy",
   },
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/dist/"],
