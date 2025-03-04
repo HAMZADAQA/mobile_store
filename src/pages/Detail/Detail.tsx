@@ -29,12 +29,8 @@ const Detail: React.FC = () => {
     similarProducts,
   } = useProductUIState(product);
 
-  if (loading || !product) {
-    return <div className="loading">Loading...</div>;
-  }
-
   const handleAddToCart = useCallback(() => {
-    if (!selectedColor || !selectedStorage) return;
+    if (!product || !selectedColor || !selectedStorage) return;
     const cartItem: CartItem = {
       id: product.id,
       product,
@@ -55,8 +51,8 @@ const Detail: React.FC = () => {
 
   const handleColorChange = useCallback(
     (colorName: string) => {
+      if (!product) return;
       setSelectedColor(colorName);
-
       const selectedColorObj = product.colorOptions?.find(
         (c) => c.name === colorName
       );
@@ -69,6 +65,7 @@ const Detail: React.FC = () => {
 
   const handleStorageChange = useCallback(
     (capacity: string) => {
+      if (!product) return;
       setSelectedStorage(capacity);
       const selectedOption = product.storageOptions?.find(
         (opt) => opt.capacity === capacity
@@ -77,6 +74,10 @@ const Detail: React.FC = () => {
     },
     [product, setSelectedStorage, setPrice]
   );
+
+  if (loading || !product) {
+    return <div className="loading">Loading...</div>;
+  }
 
   return (
     <div className="detail">

@@ -8,7 +8,7 @@ export const getCache = <T>(key: string): T | null => {
   }
 };
 
-export const setCache = (key: string, data: any): void => {
+export const setCache = <T>(key: string, data: T): void => {
   try {
     localStorage.setItem(key, JSON.stringify(data));
   } catch (error) {

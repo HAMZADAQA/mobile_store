@@ -48,7 +48,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     if (products.length === 0) {
       fetchProducts();
     }
-  }, []);
+  }, [fetchProducts, products.length]);
 
   const [cart, setCart] = useState<CartItem[]>(
     () => getCache<CartItem[]>("cart") || []
