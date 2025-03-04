@@ -1,0 +1,12 @@
+.similar-slider {
+  overflow-x: auto;
+  display: flex;
+  padding: 10px;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.similar-slider::-webkit-scrollbar {
+  display: none;
+}

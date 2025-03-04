@@ -1,0 +1,119 @@
+.phone-card {
+  border: 0.5px solid #ccc;
+  overflow: hidden;
+  background-color: #fff;
+  width: 344px;
+  height: 344px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  box-sizing: border-box;
+  padding: 16px;
+  position: relative;
+}
+
+.phone-card a {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.phone-card:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.phone-card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #000000;
+  transition: height 0.8s ease;
+  z-index: 1;
+}
+
+.phone-card:hover::before {
+  height: 100%;
+  transition: height 0.8s ease;
+}
+
+.phone-card:not(:hover)::before {
+  transition: height 0s ease;
+}
+
+.phone-card:hover .phone-card__brand,
+.phone-card:hover .phone-card__name,
+.phone-card:hover .phone-card__price {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.phone-card__image-container {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.phone-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.phone-card__info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Helvetica Neue", sans-serif;
+  padding-top: 8px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.phone-card__brand-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.phone-card__brand {
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 12.09px;
+  color: #79736d;
+  margin-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.phone-card__name {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 14.51px;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.phone-card__price {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 14.51px;
+  transition: color 0.3s ease;
+}

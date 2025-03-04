@@ -1,0 +1,83 @@
+.detail__selectors {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail__storage,
+.detail__color {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail__storage {
+  margin-bottom: 2rem;
+}
+
+.detail__storage-options,
+.detail__color-options {
+  display: flex;
+}
+
+.detail__storage-btn {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 95px;
+  height: 65px;
+  outline: none;
+}
+
+.detail__storage-btn:hover,
+.detail__storage-btn:focus {
+  transform: none;
+  border-color: #cccccc;
+  outline: none;
+}
+
+.detail__storage-btn.active {
+  border-color: #000000;
+}
+
+.detail__color-options {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.detail__color-swatch {
+  all: unset;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  padding: 1px;
+  background-clip: content-box;
+  cursor: pointer;
+  margin: 0;
+}
+
+.detail__selected-color {
+  min-height: 16px;
+}
+
+.detail__color-swatch:hover,
+.detail__color-swatch:focus {
+  transform: none;
+  border-color: #cccccc;
+  outline: none;
+}
+
+.detail__color-swatch.active {
+  border-color: #000000;
+}
+.detail__storage h4,
+.detail__color h4 {
+  font-size: 14px;
+  line-height: 16.93px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
