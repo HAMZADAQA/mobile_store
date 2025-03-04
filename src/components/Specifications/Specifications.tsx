@@ -18,7 +18,10 @@ const Specifications: React.FC<SpecificationsProps> = ({ product }) => {
     { label: "DESCRIPTION", value: product?.description },
     ...Object.entries(product?.specs || {}).map(([key, value]) => ({
       label: key.toUpperCase(),
-      value,
+      value:
+        typeof value === "string" || typeof value === "number"
+          ? value
+          : undefined,
     })),
   ];
 

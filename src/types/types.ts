@@ -17,7 +17,7 @@ export interface Product {
   basePrice: number;
   imageUrl: string;
   rating?: number;
-  specs?: { [key: string]: unknown };
+  specs?: { [key: string]: string | number };
   colorOptions?: ColorOption[];
   storageOptions?: StorageOption[];
   similarProducts?: Product[];
