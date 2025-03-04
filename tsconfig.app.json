@@ -22,7 +22,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    // Add this line to resolve the warning
     "esModuleInterop": true
   },
   "include": [
@@ -33,27 +32,3 @@
     "vite-env.d.ts"
   ]
 }
-
-// {
-//   "compilerOptions": {
-//     "outDir": "./dist",
-//     "target": "ESNext",
-//     "module": "ESNext",
-//     "moduleResolution": "node",
-//     "jsx": "react-jsx",
-//     "esModuleInterop": true,
-//     "strict": true,
-//     "allowSyntheticDefaultImports": true,
-//     "skipLibCheck": true,
-//     "forceConsistentCasingInFileNames": true,
-//     "types": ["vite/client", "jest", "@testing-library/jest-dom", "node"]
-//   },
-// "include": [
-//   "src/**/*.ts",
-//   "src/**/*.tsx",
-//   "jest.setup.ts",
-//   "src/global.d.ts",
-//   "vite-env.d.ts"
-//   ],
-//   "exclude": ["node_modules", "dist"]
-// }
