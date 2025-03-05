@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { render, screen, act } from "@testing-library/react";
-import { StoreProvider, StoreContext } from "../context/CartContext";
+import { StoreProvider } from "./StoreProvider";
+import { StoreContext } from "./CartContext";
 import { CartItem } from "../types/types";
 import { mockProduct } from "../__mocks__/mockData";
 
@@ -12,6 +13,7 @@ jest.mock("../services/utils/cache", () => ({
 const ConsumerComponent = () => {
   const context = useContext(StoreContext);
   if (!context) return <div>No context available</div>;
+
   return (
     <div>
       <div data-testid="loading">
@@ -24,12 +26,15 @@ const ConsumerComponent = () => {
           const cartItem: CartItem = {
             id: "cart-item-1",
             product: mockProduct,
-            selectedColor: mockProduct.colorOptions
-              ? mockProduct.colorOptions[0].name
-              : "default",
-            selectedStorage: mockProduct.storageOptions
-              ? mockProduct.storageOptions[0].capacity
-              : "default",
+            selectedColor:
+              mockProduct.colorOptions && mockProduct.colorOptions.length > 0
+                ? mockProduct.colorOptions[0].name
+                : "default",
+            selectedStorage:
+              mockProduct.storageOptions &&
+              mockProduct.storageOptions.length > 0
+                ? mockProduct.storageOptions[0].capacity
+                : "default",
             price: mockProduct.basePrice,
           };
           context.addItem(cartItem);
@@ -44,7 +49,7 @@ const ConsumerComponent = () => {
   );
 };
 
-describe("StoreProvider Context", () => {
+describe("StoreProvider", () => {
   test("provides initial context values", () => {
     render(
       <StoreProvider>

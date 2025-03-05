@@ -1,22 +1,22 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Cart from "./Cart";
 import { MemoryRouter } from "react-router-dom";
-import { StoreContext } from "../../context/CartContext";
+import { StoreContext, StoreContextType } from "../../context/CartContext";
 import { mockProduct } from "../../__mocks__/mockData";
 
 describe("Cart Component", () => {
   const removeItemMock = jest.fn();
   const clearCartMock = jest.fn();
 
-  const baseContext = {
+  const baseContext: StoreContextType = {
+    products: [],
+    loading: false,
+    fetchProducts: async () => {},
     cart: [],
+    addItem: () => {},
     removeItem: removeItemMock,
     clearCart: clearCartMock,
     total: 0,
-    addItem: jest.fn(),
-    fetchProducts: jest.fn(),
-    products: [],
-    loading: false,
   };
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe("Cart Component", () => {
   it("renders empty cart view", () => {
     render(
       <MemoryRouter>
-        <StoreContext.Provider value={baseContext as any}>
+        <StoreContext.Provider value={baseContext}>
           <Cart />
         </StoreContext.Provider>
       </MemoryRouter>
@@ -52,7 +52,7 @@ describe("Cart Component", () => {
       price: mockProduct.basePrice,
     };
 
-    const contextValue = {
+    const contextValue: StoreContextType = {
       ...baseContext,
       cart: [dummyCartItem],
       total: dummyCartItem.price,
@@ -60,7 +60,7 @@ describe("Cart Component", () => {
 
     render(
       <MemoryRouter>
-        <StoreContext.Provider value={contextValue as any}>
+        <StoreContext.Provider value={contextValue}>
           <Cart />
         </StoreContext.Provider>
       </MemoryRouter>
@@ -92,7 +92,7 @@ describe("Cart Component", () => {
       price: mockProduct.basePrice,
     };
 
-    const contextValue = {
+    const contextValue: StoreContextType = {
       ...baseContext,
       cart: [dummyCartItem],
       total: dummyCartItem.price,
@@ -100,7 +100,7 @@ describe("Cart Component", () => {
 
     render(
       <MemoryRouter>
-        <StoreContext.Provider value={contextValue as any}>
+        <StoreContext.Provider value={contextValue}>
           <Cart />
         </StoreContext.Provider>
       </MemoryRouter>
@@ -127,7 +127,7 @@ describe("Cart Component", () => {
       price: mockProduct.basePrice,
     };
 
-    const contextValue = {
+    const contextValue: StoreContextType = {
       ...baseContext,
       cart: [dummyCartItem],
       total: dummyCartItem.price,
@@ -135,7 +135,7 @@ describe("Cart Component", () => {
 
     render(
       <MemoryRouter>
-        <StoreContext.Provider value={contextValue as any}>
+        <StoreContext.Provider value={contextValue}>
           <Cart />
         </StoreContext.Provider>
       </MemoryRouter>

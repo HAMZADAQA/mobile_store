@@ -1,30 +1,14 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  useCallback,
-  ReactNode,
-} from "react";
+import { useState, useEffect, useCallback, ReactNode } from "react";
 import { Product, CartItem } from "../types/types";
 import { getProducts } from "../services/api";
 import { getCache, setCache } from "../services/utils/cache";
+import { StoreContext, StoreContextType } from "./CartContext";
 
-interface StoreContextType {
-  products: Product[];
-  loading: boolean;
-  fetchProducts: (query?: string) => Promise<void>;
-  cart: CartItem[];
-  addItem: (item: CartItem) => void;
-  removeItem: (index: number) => void;
-  clearCart: () => void;
-  total: number;
+interface StoreProviderProps {
+  children: ReactNode;
 }
 
-export const StoreContext = createContext<StoreContextType | undefined>(
-  undefined
-);
-
-export const StoreProvider = ({ children }: { children: ReactNode }) => {
+export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [products, setProducts] = useState<Product[]>(
     () => getCache<Product[]>("products") || []
   );
@@ -32,7 +16,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchProducts = useCallback(async (query = ""): Promise<void> => {
     setLoading(true);
-
     try {
       const data = await getProducts(query, 20, 0);
       setProducts([...data]);
@@ -59,28 +42,25 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   }, [cart]);
 
   const addItem = (item: CartItem) => setCart((prev) => [...prev, item]);
-
   const removeItem = (index: number) => {
     setCart((prev) => prev.filter((_, i) => i !== index));
   };
-
   const clearCart = () => setCart([]);
-
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
+  const contextValue: StoreContextType = {
+    products,
+    loading,
+    fetchProducts,
+    cart,
+    addItem,
+    removeItem,
+    clearCart,
+    total,
+  };
+
   return (
-    <StoreContext.Provider
-      value={{
-        products,
-        loading,
-        fetchProducts,
-        cart,
-        addItem,
-        removeItem,
-        clearCart,
-        total,
-      }}
-    >
+    <StoreContext.Provider value={contextValue}>
       {children}
     </StoreContext.Provider>
   );

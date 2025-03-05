@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext, useCallback, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CartItem } from "../../types/types";
 import { StoreContext } from "../../context/CartContext";
@@ -16,6 +16,8 @@ const Detail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const cartContext = useContext(StoreContext);
   const { product, loading } = useProductDetail(id || "");
+
+  const [hoveredColor, setHoveredColor] = useState<string | null>(null);
 
   const {
     currentImage,
@@ -108,10 +110,10 @@ const Detail: React.FC = () => {
             product={product}
             selectedColor={selectedColor}
             selectedStorage={selectedStorage}
-            hoveredColor={null}
+            hoveredColor={hoveredColor}
             handleColorChange={handleColorChange}
             handleStorageChange={handleStorageChange}
-            setHoveredColor={() => {}}
+            setHoveredColor={setHoveredColor}
           />
 
           <button

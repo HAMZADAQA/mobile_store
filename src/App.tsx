@@ -4,12 +4,12 @@ import Home from "./pages/Home/Home";
 import Detail from "./pages/Detail/Detail";
 import Cart from "./pages/Cart/Cart";
 import Navbar from "./components/Navbar/Navbar";
-import { StoreProvider } from "./context/CartContext";
+import { StoreProvider } from "./context/StoreProvider";
 
 const App: React.FC = () => {
   return (
     <StoreProvider>
-      <Router>
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Navbar />
         <main className="container">
           <Routes>

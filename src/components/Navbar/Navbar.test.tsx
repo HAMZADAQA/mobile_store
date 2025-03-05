@@ -1,18 +1,25 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Navbar from "./Navbar";
-import { StoreContext } from "../../context/CartContext";
+import { StoreContext, StoreContextType } from "../../context/CartContext";
 import { mockProduct } from "../../__mocks__/mockData";
 
 describe("Navbar Component", () => {
   it("renders logo and shows empty cart when cart is empty", () => {
-    const storeContextValue = {
+    const storeContextValue: StoreContextType = {
+      products: [],
+      loading: false,
+      fetchProducts: async () => {},
       cart: [],
+      addItem: () => {},
+      removeItem: () => {},
+      clearCart: () => {},
+      total: 0,
     };
 
     render(
       <MemoryRouter>
-        <StoreContext.Provider value={storeContextValue as any}>
+        <StoreContext.Provider value={storeContextValue}>
           <Navbar />
         </StoreContext.Provider>
       </MemoryRouter>
@@ -44,13 +51,20 @@ describe("Navbar Component", () => {
       price: mockProduct.basePrice,
     };
 
-    const storeContextValue = {
+    const storeContextValue: StoreContextType = {
+      products: [],
+      loading: false,
+      fetchProducts: async () => {},
       cart: [dummyCartItem],
+      addItem: () => {},
+      removeItem: () => {},
+      clearCart: () => {},
+      total: dummyCartItem.price,
     };
 
     render(
       <MemoryRouter>
-        <StoreContext.Provider value={storeContextValue as any}>
+        <StoreContext.Provider value={storeContextValue}>
           <Navbar />
         </StoreContext.Provider>
       </MemoryRouter>
