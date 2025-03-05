@@ -10,7 +10,7 @@ jest.mock("../../hooks/useProductDetail", () => ({
 jest.mock("../../hooks/useProductUIState", () => ({
   useProductUIState: jest.fn(),
 }));
-jest.mock("../../hooks/useScrollToTop", () => jest.fn());
+jest.mock("../../hooks/useSmoothScrollOnParamChange", () => jest.fn());
 
 import { useProductDetail } from "../../hooks/useProductDetail";
 import { useProductUIState } from "../../hooks/useProductUIState";

@@ -7,16 +7,15 @@ import { useProductUIState } from "../../hooks/useProductUIState";
 import ProductSelectors from "../../components/ProductSelectors/ProductSelectors";
 import Specifications from "../../components/Specifications/Specifications";
 import SwipeableProductsSlider from "../../components/SimilarProductsSlider/SimilarProductsSlider";
+import useSmoothScrollOnParamChange from "../../hooks/useSmoothScrollOnParamChange";
 import "./detail.css";
-import useScrollToTop from "../../hooks/useScrollToTop";
 
 const Detail: React.FC = () => {
-  useScrollToTop();
-
   const { id } = useParams<{ id: string }>();
+  useSmoothScrollOnParamChange(id || "");
+
   const cartContext = useContext(StoreContext);
   const { product, loading } = useProductDetail(id || "");
-
   const [hoveredColor, setHoveredColor] = useState<string | null>(null);
 
   const {
