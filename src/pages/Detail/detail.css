@@ -158,7 +158,9 @@ h4 {
   .detail__image {
     height: 300px;
   }
-
+  .detail__image img {
+    max-height: 300px;
+  }
   .btn-add-cart {
     width: 100%;
     height: 48px;
