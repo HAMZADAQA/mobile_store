@@ -211,6 +211,12 @@
   }
 
   .cart__empty .btn-continue {
-    width: 100%;
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    margin: 0;
+    box-sizing: border-box;
   }
 }

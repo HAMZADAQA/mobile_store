@@ -15,3 +15,8 @@ body {
   margin: 0 auto;
   padding: 1rem;
 }
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
